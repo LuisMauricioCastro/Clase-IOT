@@ -1,0 +1,12 @@
+#include <iostream>
+using namespace std;
+auto delay_Ms = 1000;
+void setup() {
+  // put your setup code here, to run once:
+  cout << "Hola mundo" << endl;
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+}
