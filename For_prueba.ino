@@ -1,4 +1,4 @@
-//for_prueba.cpp : Alan Aceves : a325103@uach.mx
+
 
 #include <random>    //.1 Motor generador de numeros aleatorios
 #include <vector>    //.2 vector
