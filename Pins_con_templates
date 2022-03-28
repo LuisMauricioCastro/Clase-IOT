@@ -1,0 +1,28 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+using Byte = uint8_t;
+
+using Pins = vector<Byte>;
+
+template <class... T>
+  Pins PINS(T... args) {
+    return Pins { static_cast<Byte>(args)... };
+  }
+void setup() {
+  // put your setup code here, to run once:
+ 
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+    auto chips = { PINS(12), PINS(13,14), PINS(15,16,17) };
+    for (const auto &c: chips) {
+        for (const auto &p: c) {
+            cout << (unsigned)p << " ";
+        }
+        cout << endl;
+    }
+}
