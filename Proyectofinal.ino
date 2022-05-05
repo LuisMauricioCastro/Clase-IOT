@@ -4,9 +4,9 @@
 #include <DHT.h>
 #include <EasyBuzzer.h>
 //Crear el objeto lcd  dirección  0x3F y 16 columnas x 2 filas
-LiquidCrystal_I2C lcd(0x23,16,2);  //
+LiquidCrystal_I2C lcd(0x23,16,2);  //  << Address 1
 LiquidCrystal_I2C lcd2(0x25, 16, 2); // << Address 2
-LiquidCrystal_I2C lcd3(0x26, 16, 2); // << Address 2
+LiquidCrystal_I2C lcd3(0x26, 16, 2); // << Address 3
 
 // Definimos el pin digital donde se conecta el sensor
 #define DHTPIN 14
@@ -17,7 +17,7 @@ const int buzzer = 25;
 DHT dht(DHTPIN, DHTTYPE);
 
 int Gas_analog = 4;    // used for ESP32
-int Gas_digital = 15;   // used for ESP32
+
 void setup() {
  EasyBuzzer.setPin(buzzer);
 
@@ -35,9 +35,8 @@ void setup() {
   
   lcd2.print("Temperatura");
   lcd3.print("Humedad");
-  pinMode(Gas_digital, INPUT);
+  
 }
-
 void loop() {
   EasyBuzzer.update();
   // Leemos la humedad relativa
@@ -46,13 +45,12 @@ void loop() {
   float t = dht.readTemperature();
   // Leemos la temperatura en grados Fahreheit
   float f = dht.readTemperature(true);
+ //inizializamos el senosr de gas de manera analogica
   int gassensorAnalog = analogRead(Gas_analog);
-  int gassensorDigital = digitalRead(Gas_digital);
-   // Ubicamos el cursor en la primera posición(columna:0) de la segunda línea(fila:1)
-  
+//Establecesmos el cursor en las pantallas
   lcd2.setCursor(0, 1);
   lcd3.setCursor(0, 1);
-   // Escribimos el número de segundos trascurridos
+   // Escribimos el número de temperatura,humedad y gas metano
   lcd2.print(t);
   lcd2.print(" Grados C");
   lcd3.print(h);
@@ -60,6 +58,7 @@ void loop() {
   lcd.setCursor(0, 1);
   lcd.print(gassensorAnalog);
   lcd.print("ppm ");
+ //En caso de que las ppm superen los 1400 unidades mandara la leyenda que hay gas y hará sonar la alarma
     if (gassensorAnalog > 1400) {
       lcd.setCursor(0, 0);
     lcd.println("Hay Gas   ");
@@ -72,7 +71,7 @@ void loop() {
     1             // Número de ciclos
    
   );
-  }
+  }//En caso de que no exsista gas mostrara el mensaje que no hay gas
   else {
     lcd.setCursor(0, 0);
     lcd.println("No hay Gas");
