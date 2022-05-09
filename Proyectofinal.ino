@@ -20,7 +20,8 @@ int Gas_analog = 4;    // used for ESP32
 
 void setup() {
  EasyBuzzer.setPin(buzzer);
-
+  pinMode(33,OUTPUT);
+  pinMode(32,OUTPUT);
   Serial.begin(115200);
    dht.begin();
   // Inicializar el LCD
@@ -62,6 +63,8 @@ void loop() {
     if (gassensorAnalog > 1400) {
       lcd.setCursor(0, 0);
     lcd.println("Hay Gas   ");
+    digitalWrite(33,HIGH);
+    digitalWrite(32,LOW);
        EasyBuzzer.beep(
     1500,          // Frecuencia en herzios
     1000,           // Duración beep en ms
@@ -75,7 +78,9 @@ void loop() {
   else {
     lcd.setCursor(0, 0);
     lcd.println("No hay Gas");
-   
+    digitalWrite(32,HIGH);
+    digitalWrite(33,LOW);
+    
   }
   delay(100);
   
