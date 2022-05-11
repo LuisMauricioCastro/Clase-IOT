@@ -2,7 +2,6 @@
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
 #include <DHT.h>
-#include <EasyBuzzer.h>
 //Crear el objeto lcd  dirección  0x3F y 16 columnas x 2 filas
 LiquidCrystal_I2C lcd(0x23,16,2);  //  << Address 1
 LiquidCrystal_I2C lcd2(0x25, 16, 2); // << Address 2
@@ -17,11 +16,10 @@ const int buzzer = 25;
 DHT dht(DHTPIN, DHTTYPE);
 
 int Gas_analog = 4;    // used for ESP32
-
 void setup() {
- EasyBuzzer.setPin(buzzer);
   pinMode(33,OUTPUT);
   pinMode(32,OUTPUT);
+  pinMode(buzzer,OUTPUT);
   Serial.begin(115200);
    dht.begin();
   // Inicializar el LCD
@@ -39,7 +37,6 @@ void setup() {
   
 }
 void loop() {
-  EasyBuzzer.update();
   // Leemos la humedad relativa
   float h = dht.readHumidity();
   // Leemos la temperatura en grados centígrados (por defecto)
@@ -60,27 +57,18 @@ void loop() {
   lcd.print(gassensorAnalog);
   lcd.print("ppm ");
  //En caso de que las ppm superen los 1400 unidades mandara la leyenda que hay gas y hará sonar la alarma
-    if (gassensorAnalog > 1400) {
+    if (gassensorAnalog > 1600) {
       lcd.setCursor(0, 0);
     lcd.println("Hay Gas   ");
     digitalWrite(33,HIGH);
     digitalWrite(32,LOW);
-       EasyBuzzer.beep(
-    1500,          // Frecuencia en herzios
-    1000,           // Duración beep en ms
-    1000,           // Duración silencio en ms
-    1,             // Números de beeps por ciclos
-    300,           // Duración de la pausa
-    1             // Número de ciclos
-   
-  );
-  }//En caso de que no exsista gas mostrara el mensaje que no hay gas
+    digitalWrite(buzzer,HIGH);
   else {
     lcd.setCursor(0, 0);
     lcd.println("No hay Gas");
     digitalWrite(32,HIGH);
     digitalWrite(33,LOW);
-    
+    digitalWrite(buzzer,LOW);
   }
   delay(100);
   
