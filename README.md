@@ -3,7 +3,9 @@ Programas realizados en la clase de Internet of things
 
 Grupo 8HW1
 
-Alumno: Luis Mauricio Castro Gutiérrez
+Alumno: 
+Luis Mauricio Castro Gutiérrez
+Rodrigo Alberto Valdez Covarrubias
 
 Profesor:  Pacheco Gonzalez Alberto
 
@@ -38,7 +40,7 @@ Primeramente, se buscó que sensores teníamos a la mano y si estos servían par
 
 ●	DHT11.
 
-3 Pantallas LCD.
+● 3 Pantallas LCD.
 
 ●	3 adaptadores de conexiones LCD a i2c.
 
@@ -207,6 +209,11 @@ El ULN2003 va a recibir tres entradas de los pines 25,33 y 32, estas entradas pa
 
 
 Pd: se puso la interpretación de la tira led de 12v solo con un led y la interpretación de la sirena de 12v con un buzzer, se puso una batería de 12v en sustituto a nuestra fuente de poder de computadora modificada.
+
+Importante tener en cuenta el diagrama de conexiones del ESP32 todo el tiempo pues se requiere en cada conexión:
+
+![image](https://user-images.githubusercontent.com/98352322/168682044-42c1322e-dffe-4696-b292-dbe848dfb4b6.png)
+
 
 ### Desarrollo del proyecto
 
@@ -497,6 +504,505 @@ https://drive.google.com/file/d/1DOTJb55SXMTuTHYOrzcRV_U-Resku4TW/view?usp=shari
 
 
 ### Referencias
+
+https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf
+
+http://www.handsontec.com/dataspecs/module/I2C_1602_LCD.pdf
+
+https://uelectronics.com/wp-content/uploads/2018/01/MQ-4.pdf
+
+https://arduinoque.com/arduino/display-lcd-16x2-datasheet/
+
+https://pdf1.alldatasheet.es/datasheet-pdf/view/25575/STMICROELECTRONICS/ULN2003.html
+
+https://www.inventable.eu/2018/02/09/uln2003-driver-salida-microcontroladores/
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+# Clase-IOT
+Programs made in the Internet of Things class
+Grupo 8HW1
+
+Students: 
+Luis Mauricio Castro Gutiérrez
+Rodrigo Alberto Valdez Covarrubias
+Professor:  Pacheco Gonzalez Alberto
+
+development board: ESP32 DEVKIT V1
+
+### Problem Statement
+The project seeks to determine if the location where the system is has levels of methane not dangerous, also sensing the temperature and relative humidity of the environment, this by the large amount of gas leaks that exist daily.
+### Objectives
+It is want to do with an ESP32 microcontroller which by means of components will show the data of the sensors and alert if the level of methane is sufficient to achieve be dangerous, if detected, a visual and audible alarm will be activated so that the user knows that there is a gas leak.
+### Methodology
+Our methodology to use is the Scrumban methodology this methodology allows individual tasks to be added to the plan. This allows the project plans to maintain a simple and clear structure, it looks at the project as a puzzle which requires all the pieces to be complete, but does not force to accommodate the pieces in a specific order. 
+Based on this methodology we decided to divide tasks such as researching and testing sensors that we were going to use, investigating which libraries and code we would have to include for the screens with the adapter to work, integration of the ULN2003 driver, implementation of audible and visual alerts, purchase of components and use of ESP32 pins.
+First, we looked for sensors we had at hand and if these were useful for our project, it was determined that we had the temperature and humidity sensor, but not the methane sensor so it had to be purchased. The use of ESP32 pins was investigated in each component since some pins are not usable due to issues that are used internally by the ESP32. After the above it was decided to do the tests with the sensors of methane, humidity and temperature, for this it had to investigate libraries along with their operation in code. Once the tests were carried out, the sound alerts were implemented, seeing that they did not alert at all, it was decided to implement the ULN2003 driver in order to use more powerful sound and visual alarms.
+### Material Description
+●	ESP-32.
+
+●	Driver ULN2003.
+
+●	 Dupont Wires.
+
+●	Bocina automotriz DC 12V.
+
+●	Fuente de poder 12V.
+
+●	Led strips 12 volts.
+
+●	2 Protoboards.
+
+●	DHT11.
+
+●        3 LCD Screens.
+
+●	3 adapters for LCD to i2c connections
+
+●	1 Sensor MQ4.
+
+Sensor DHT11
+
+![image](https://user-images.githubusercontent.com/98352322/168677494-364a8489-9f6b-4ccb-8c94-5bb5f46216d6.png)
+
+This sensor is widely used thanks to its high reliability and stability, thanks to the fact that its digital signal is already calibrated. Added to this its installation and use is very easy as it only has 3 connections (Voltage 3V/5V, Earth and I/O), software has a library for interaction with the sensor.
+
+Detailed technical specifications:
+
+![image](https://user-images.githubusercontent.com/98352322/168677568-e3c6d7de-57b7-46b3-95b8-5b47476271c4.png)
+
+Sensor MQ-4
+
+![image](https://user-images.githubusercontent.com/98352322/168677600-109af7c4-6af9-460b-9138-655a5d1ef029.png)
+
+This sensor is responsible for detecting methane gas in the environment, has 2 information outputs (analog and digital), its installation is fast and simple since it has 4 terminals (Voltage, Earth, Digital output, Analog output) this giving us the ability to with a single pin send data output to it microcontroller.
+Detailed technical specifications:
+
+![image](https://user-images.githubusercontent.com/98352322/168677680-3c62b662-23eb-4fa2-b8e4-3ce35534b8bb.png)
+
+ LCD screen (16,2) 
+
+![image](https://user-images.githubusercontent.com/98352322/168677708-3735367c-ec8e-4111-bbf1-b8eac7ed399c.png)
+
+Display 16 characters and 2 lines, will be responsible for displaying sensor data to the user.
+Adapter for LCD to i2c connections
+
+![image](https://user-images.githubusercontent.com/98352322/168677760-9f0e7db9-858b-48b8-8502-41907d072e0b.png)
+
+This adapter allows to transform a common display (16,2) and current to a communication protocol i2c, this protocol is very beneficial as it allows us to control multiple screens with only 2 pins, This adapter features a change of direction if you are soldered certain terminals, this to handle multiple displays.
+Detailed technical specifications:
+
+Compatible with Arduino cards or other microcontrollers with I2C bus
+Display type: Negative white on blue background.
+
+I2C address: 0x38-0x3F (0x3F by default)
+
+Power supply: 5V
+
+Interface: I2C to 4-bit LCD data and control lines.
+
+Contrast adjustment: Potentiometer on plate.
+
+Rear light control: Firmware or a jumper cable.
+
+Size: 80x36 mm
+
+Protoboard
+
+![image](https://user-images.githubusercontent.com/98352322/168677889-757bef72-502c-4bc9-8da0-5f526703660c.png)
+
+Protoboard Breadboard 830 White Dots
+Connection plate (Protoboard), with 1 block, 2 strips, without terminals and 830 perforations, ideal for assembling prototypes of electronic circuits.
+
+LED strips 12 volts
+
+![image](https://user-images.githubusercontent.com/98352322/168677949-b06dc0e7-1458-46e9-a854-3e7071805c72.png)
+
+The function of the LED strips is to visually show the behavior of the system.
+
+12V Power Supply/Computer Source Modified to Deliver 12V
+
+![image](https://user-images.githubusercontent.com/98352322/168678050-13ba8186-5531-4f0e-a007-a94afa580f8d.png)
+
+It will be responsible for supplying power to components that work with 12V, can be used batteries or more compact solutions, in our case we will use a modified power source to have available a 12 volt terminal and ground.
+Driver ULN2003
+
+![image](https://user-images.githubusercontent.com/98352322/168678099-ccb93bf9-6482-458d-89f9-aa3952301fc2.png)
+
+Driver used to send a 3.3/5V signal to the inputs, in case the output sends it will ground, as can be seen in the following diagram:
+
+![image](https://user-images.githubusercontent.com/98352322/168678136-e03dfe29-55fe-4982-9e81-f45c18edcfc8.png)
+
+Automotive siren DC 12V 6 tones
+
+![image](https://user-images.githubusercontent.com/98352322/168678173-32202eb6-ad6b-4534-a7b9-c15e0fd088ba.png)
+
+Car siren that works with 12V and has 6 tones, will be used for sound warning medium against the presence of methane.
+Dupont cables
+
+![image](https://user-images.githubusercontent.com/98352322/168678209-c0b827cc-4ecf-4919-b291-15c7eb475aa1.png)
+
+The connection between the components of the system will be made to send the data, voltages and earths.
+ESP32
+
+![image](https://user-images.githubusercontent.com/98352322/168678326-e811f4b5-57cb-46a1-b65d-9c252c50151f.png)
+
+Power Voltage (USB): 5V DC
+
+Input/Output Voltage: 3.3V DC
+
+SoC: ESP32
+
+Main CPU: Tensilica Xtensa 32-bit LX6
+
+Clock Frequency: up to 240Mhz
+
+Served: Up to 600 DMIPS
+
+Secondary processor: Allows basic operations in ultra-low power mode
+
+Wifi: 802.11 b/g/n/e/i (802.11n @ 2.4 GHz up to 150 Mbit/s)
+
+Bluetooth:v4.2 BR/EDR and Bluetooth Low Energy (BLE)
+
+Xtensa Dual-Core 32-bit LX6 microprocessors, up to 600 DMIPS
+
+Memory: 448 KByte ROM
+
+520 KByte SRAM
+
+16 KByte SRAM in RTC
+
+QSPI Flash/SRAM, 4 MBytes
+
+GPIO Digital Pins: 24 (Some pins only as input)
+Analog Digital Converter: Two 12bit SAR-type ADCs, support measurements on up to 18 channels, some pins support a programmable gain amplifier
+UART: 2
+
+Chip USB-Serial: CP2102
+
+Antenna on PCB
+Security: IEEE 802.11 standards including WFA, WPA/WPA2 and WAPI
+
+1024-bit OTP, up to 768-bit for customers
+
+Hardware cryptographic acceleration: AES, HASH (SHA-2), RSA, ECC, RNG
+### Design description
+
+First, all connections were implemented step by step in fritzing, although some connections can be confusing is the most accommodating that the diagram can be, we will explain part by part the design.
+
+![image](https://user-images.githubusercontent.com/98352322/168678467-5acfd584-5fa2-4482-ac20-6b6f258b7ba4.png)
+
+LCD Screen:
+
+![image](https://user-images.githubusercontent.com/98352322/168678490-ffbd4405-25aa-44aa-aa27-64a100030c40.png)
+
+In this part we can see that all screens have the i1c protocol since they are 4 pins and, in the description, clarifies us, so we will connect voltage and earth to all, we will also connect to the pins of the ESP32 i2c SCL and i2c SDA to the positive and negative terminals of the top, for these lines the information will be sent to the screens therefore we have to connect their pins SCL and SDA where they correspond in the line.
+Sensors:
+
+![image](https://user-images.githubusercontent.com/98352322/168678533-7d5db326-c34a-4715-a81a-7a1933229395.png)
+
+The sensors will be connected to voltage and ground, added to these the data pin of the DHT11 sensor will be connected to pin 14 of the ESP32, the MQ-4 sensor will connect its analog sensor terminal to pin 4.
+ULN2003:
+
+![image](https://user-images.githubusercontent.com/98352322/168678576-3dfd83c7-268c-4189-a74a-1e1b817eca7e.png)
+
+The ULN2003 will receive three inputs from pins 25,33 and 32, these inputs will pass through the driver and connect to the green LED earth(the first), the red LED earth(the second) and our alarm, this completing the circuit since a 12 volt power source is sending earth to the ULN2003 and positive to the components if the ULN2003 sends earth to any of the components the circuit will close and the component will work.
+
+Note: Got 12v LED strip interpretation only with an LED and 12v siren interpretation with a buzzer, got a 12v battery replacing our modified computer power source.
+
+Important to keep in mind the ESP32 connection diagram all the time as it is required in each connection:
+
+![image](https://user-images.githubusercontent.com/98352322/168682044-42c1322e-dffe-4696-b292-dbe848dfb4b6.png)
+
+
+### Project development
+
+First, we chose the subject given that personal situations could be implemented outside the class.
+Once the project was decided, materials began to be obtained, initially each sensor was tested separately to understand its operation.
+
+Initially, only the DHT sensor was implemented and the following code was tested:	
+```
+// Include library
+#include <DHT.h>
+// We define the digital pin where the sensor is connected
+#define DHTPIN 14
+// Depending on the type of sensor
+#define DHTTYPE DHT11
+// We initialize the DHT11 sensor
+DHT dht(DHTPIN, DHTTYPE);
+void setup() {
+  // Inicializamos comunicación serie
+  Serial.begin(9600);
+  // Comenzamos el sensor DHT
+  dht.begin();
+}
+void loop() {
+    // Esperamos 5 segundos entre medidas
+  delay(5000);
+  // Leemos la humedad relativa
+  float h = dht.readHumidity();
+  // Leemos la temperatura en grados centígrados (por defecto)
+  float t = dht.readTemperature();
+  // Leemos la temperatura en grados Fahreheit
+  float f = dht.readTemperature(true);
+  // Comprobamos si ha habido algún error en la lectura
+  if (isnan(h) || isnan(t) || isnan(f)) {
+    Serial.println("Error obteniendo los datos del sensor DHT11");
+    return;
+  }
+  // Calcular el índice de calor en Fahreheit
+  float hif = dht.computeHeatIndex(f, h);
+  // Calcular el índice de calor en grados centígrados
+  float hic = dht.computeHeatIndex(t, h, false);
+  Serial.print("Humedad: ");
+  Serial.print(h);
+  Serial.print(" %\t");
+  Serial.print("Temperatura: ");
+  Serial.print(t);
+  Serial.print(" *C ");
+  Serial.print(f);
+  Serial.print(" *F\t");
+  Serial.print("heat: ");
+  Serial.print(hic);
+  Serial.print(" *C ");
+  Serial.print(hif);
+  Serial.println(" *F");
+}
+```
+
+Knowing that it worked correctly we decided to see if the mq4 sensor worked with the following code:
+```
+const int MQ_PIN = A0;
+
+const int MQ_DELAY = 2000;
+
+void setup(){
+
+  Serial.begin(9600);
+  
+}
+
+void loop() {
+
+  int raw_adc = analogRead(MQ_PIN);
+  
+  float value_adc = raw_adc * (5.0 / 1023.0);
+  
+  Serial.print("Raw:");
+  
+  Serial.print(raw_adc);
+  
+  Serial.print("    Tension:");
+  
+  Serial.println(value_adc);
+  
+ delay(MQ_DELAY);
+ 
+}
+```
+
+
+We got a bad surprise, because the sensor it had was not working, so we had to buy another one and since it worked correctly it was decided to implement the data sample.
+
+When looking for how to implement screens with I2C protocol, we first looked for OLED screens, we looked for the following model:
+
+![image](https://user-images.githubusercontent.com/98352322/168678701-88951810-06a3-496f-8fb8-b5b531de3e66.png)
+
+But unfortunately when buying they had to return since they could not be changed direction, so it was decided to use LCD screens (16,2), for this requires the display adapter to the communication protocol i2c.
+
+For this we require to weld the screens with the adapter, in turn we will have to weld the addresses of the adapters to with the code that will be seen below knowing the addresses of each screen.
+
+![image](https://user-images.githubusercontent.com/98352322/168678947-5e122852-48da-41c6-8fcc-2794152aedcc.png)
+
+In the above image we can see where the direction of each adapter is changed.
+
+The code to search for the addresses is as follows:
+```
+
+#include <Wire.h> //include Wire.h library
+
+void setup()
+{
+  Wire.begin(); // Wire communication begin
+  Serial.begin(9600); // The baudrate of Serial monitor is set in 9600
+  while (!Serial); // Waiting for Serial Monitor
+  Serial.println("\nI2C Scanner");
+}
+
+void loop()
+{
+  byte error, address; //variable for error and I2C address
+  int nDevices;
+
+  Serial.println("Scanning...");
+
+  nDevices = 0;
+  for (address = 1; address < 127; address++ )
+  {
+    // The i2c_scanner uses the return value of
+    // the Write.endTransmisstion to see if
+    // a device did acknowledge to the address.
+    Wire.beginTransmission(address);
+    error = Wire.endTransmission();
+
+    if (error == 0)
+    {
+      Serial.print("I2C device found at address 0x");
+      if (address < 16)
+        Serial.print("0");
+      Serial.print(address, HEX);
+      Serial.println("  !");
+      nDevices++;
+    }
+    else if (error == 4)
+    {
+      Serial.print("Unknown error at address 0x");
+      if (address < 16)
+        Serial.print("0");
+      Serial.println(address, HEX);
+    }
+  }
+  if (nDevices == 0)
+    Serial.println("No I2C devices found\n");
+  else
+    Serial.println("done\n");
+
+  delay(5000); // wait 5 seconds for the next I2C scan
+}
+```
+
+When deciphering the directions we will integrate the screens and sensors, once integrated this will pass to the integration of a sound and visual alert, this was first sought to use a buzzer and simple LEDs, but it was noticed that they did not generate enough alert, so it was sought to use a more powerful siren, this looking for something that would convert a signal from 5 volts to 12 volts were considered options such as the use of relays but was deicidio better to use a driver ULN2003 this that fulfils the function of a relay without being one, with this it was decided to take advantage of the driver to also activate 2 strips LEDs of 2 different colors, both of 12volts, powered by a computer source, since this gives us a power for the components of 12 Volts.
+
+![image](https://user-images.githubusercontent.com/98352322/168679315-b6051fb6-0c58-4b57-a2a0-cc85a20bda4f.png)
+
+So everything implemented in code looks like this:
+
+```
+#include <Wire.h> 
+#include <LiquidCrystal_I2C.h>
+#include <DHT.h>
+// Create the direction lcd object 0x3F y 16 columms x 2 rows
+LiquidCrystal_I2C lcd(0x23,16,2);  //  << Address 1
+LiquidCrystal_I2C lcd2(0x25, 16, 2); // << Address 2
+LiquidCrystal_I2C lcd3(0x26, 16, 2); // << Address 3
+
+// We define the digital pin where the sensor is connected
+#define DHTPIN 14
+// Depending on the type of sensor
+#define DHTTYPE DHT11
+const int buzzer = 25; 
+// We initialize the DHT11 sensor
+DHT dht(DHTPIN, DHTTYPE);
+
+int Gas_analog = 4;    // used for ESP32
+void setup() {
+  pinMode(33,OUTPUT);
+  pinMode(32,OUTPUT);
+  pinMode(buzzer,OUTPUT);
+  Serial.begin(115200);
+   dht.begin();
+  // Initialize the LCD
+  lcd.init();
+  lcd2.init();
+  lcd3.init();
+  // Turn on the backlight.
+  lcd.backlight();
+  lcd2.backlight();
+  lcd3.backlight();
+  // We write the Message on the LCD.
+  
+  lcd2.print("Temperature");
+  lcd3.print("Humidity");
+  
+}
+void loop() {
+  // We read the relative humidity
+  float h = dht.readHumidity();
+  // We read the temperature in Celsius (default)
+  float t = dht.readTemperature();
+  // We read the temperature in Fahreheit degrees
+  float f = dht.readTemperature(true);
+ // We started the gas senor analogically
+  int gassensorAnalog = analogRead(Gas_analog);
+// Set the cursor on the screens
+  lcd2.setCursor(0, 1);
+  lcd3.setCursor(0, 1);
+   // We write the temperature, humidity and methane gas number
+  lcd2.print(t);
+  lcd2.print(" Degrees C");
+  lcd3.print(h);
+  lcd3.print(" Relative");
+  lcd.setCursor(0, 1);
+  lcd.print(gassensorAnalog);
+  lcd.print("ppm ");
+ // In case the ppm exceeds 1400 units will send the legend that there is gas and sound the alarm
+    if (gassensorAnalog > 1600) {
+      lcd.setCursor(0, 0);
+    lcd.println("there is gas   ");
+    digitalWrite(33,HIGH);
+    digitalWrite(32,LOW);
+    digitalWrite(buzzer,HIGH);
+  else {
+    lcd.setCursor(0, 0);
+    lcd.println("there is no gas");
+    digitalWrite(32,HIGH);
+    digitalWrite(33,LOW);
+    digitalWrite(buzzer,LOW);
+  }
+  delay(100);
+  
+}
+```
+It had a buzzer but this was not perceived well, so we chose to replace it with an alarm.
+
+We managed to get a car alarm at a very good price and connected to the 12 Volts power. Thanks to the sound of the alarm we were able to get the desired result as we could now hear clearly when the system detected an anomaly, this in order to alert people to this problem.
+
+![image](https://user-images.githubusercontent.com/98352322/168680242-7047baeb-7ac3-4e16-a648-c812f78a9151.png)
+
+You can see in the image how the 12 Volt LED strips were applied, as these will provide the state of the environment in a luminous way. Proving that the green color is the correct natural state and the red is when it has detected an anomaly in the environment, one of the main cases when the red color is activated in the LED strip is when it has detected carbon monoxide, since this is the main substance coming in homes.
+
+![image](https://user-images.githubusercontent.com/98352322/168680291-85059865-9a12-4684-9c54-341e1bd67d1e.png)
+
+### Planning
+Thanks to the fact that the project was developed in time and form we would like to implement a box where it is stored, as it improves the aesthetics, ease of transport, and above all becomes more user-friendly.
+
+Also a possible improvement would be to implement the packaging of our system through a 3D printer, since in this way we can realize the design, to our liking, looking for the best appearance and the best space for the accommodation of our system.
+Also a possible improvement implement a server which can observe the value of the sensors or even with greater dedication and time you could connect via wifi and code to the virtual assistant Alexa, since Alexa allows you to program for it without any restrictions
+### Problems/Obstacles.
+There were several problems that arose in the implementation of the project. For example:
+
+When we welded one of the components this did not work, but, it could be rectified and fixed this failure by welding the plate again.
+
+The gas sensor detected gas when there were no particles, it could be solved by manually calibrating the sensor to 1500 particles per meter for detection.
+
+●	When the system sent a detection signal our green LED strip was turned off but neither the horn nor the red LED strip was turned on. To correct this error the polarity of the ULN was changed as it was thought to be connected in a certain way and turned out to be inverse.
+
+We had a buzzer for the detection of some sensor, but the frequency of this
+
+Noise sensitivity, the project sometimes when moving the ESP32 started to send noise to the screens or the sensor became more or less sensitive.
+### Results and conclusions
+
+The result was very gratifying given that the project satisfies the problem posed, although in this problem was based on a solution that could seem simple ended up making a system worthy of competing in the market in terms of functionality, Although it was expected a result in the project which was cleaner the continuous improvements complicated the circuit more and more, not to mention that a computer source had to be implemented in the absence of a 12v battery.
+
+Showing its operation we can see that when there is no presence of gas the green light is displayed and the LCD displays the message "No gas".
+
+![image](https://user-images.githubusercontent.com/98352322/168680779-82110b03-7fb4-46b1-888f-b31b33c4c956.png)
+
+In case the sensor detects gas as we see in the following image, it will show a visual alert (LED in red) and a sound alert that is a 12v automotive alarm with 6 tones.
+
+![image](https://user-images.githubusercontent.com/98352322/168680828-6744dce0-e4c3-4c58-9909-acab6c61604d.png)
+
+Video of the project running:
+
+https://drive.google.com/file/d/1DOTJb55SXMTuTHYOrzcRV_U-Resku4TW/view?usp=sharing
+
+
+### References
 
 https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf
 
