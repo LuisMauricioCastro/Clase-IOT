@@ -529,8 +529,11 @@ Programs made in the Internet of Things class
 Grupo 8HW1
 
 Students: 
+
 Luis Mauricio Castro Gutiérrez
+
 Rodrigo Alberto Valdez Covarrubias
+
 Professor:  Pacheco Gonzalez Alberto
 
 development board: ESP32 DEVKIT V1
