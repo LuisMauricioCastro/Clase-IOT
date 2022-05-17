@@ -7,20 +7,20 @@ Alumno:
 Luis Mauricio Castro Gutiérrez
 Rodrigo Alberto Valdez Covarrubias
 
-Profesor:  Pacheco Gonzalez Alberto
+Profesor:  Pacheco González Alberto
 
 Placa de desarrollo: ESP32 DEVKIT V1
 
-### Plantamiento del problema
-El proyecto busca lograr determinar si la ubicación en donde está el sistema tiene niveles de metano no peligrosos, también sensado de la temperatura y humedad relativa del ambiente, esto por la gran cantidad de fugas de gas que existen cotidianamente.
+### Planteamiento del problema
+El proyecto busca lograr determinar si la ubicación en donde está el sistema tiene niveles de metano no peligrosos, también el sensado de la temperatura y humedad relativa del ambiente, esto por la gran cantidad de fugas de gas que existen cotidianamente.
 ### Objetivos
 Se busca hacer con un microcontrolador ESP32 el cual por medio de componentes mostrará los datos de los sensores y alertará si el nivel de metano es suficiente como para lograr ser peligroso, en caso de detectarlo activara una alarma visual y sonora para que el usuario sepa que existe una fuga de gas.
-### Metodologia
-Nuestra metodologia a usar es la metodologia Scrumban esta metodología permite que se agreguen tareas individuales al plan. Esto permite que los planes de proyectos mantengan una estructura simple y clara, esta observa al proyecto como un rompecabezas el cual requiere de todas las piezas para estar completo, pero no obliga a acomodar las piezas en un orden especifico. 
-Basados en esta metodologia decidimos dividirnos tareas como el investigar y probar sensores que íbamos a usar, investigar que librerías y que código tendríamos que incluir para que las pantallas con el adaptador funcionaran, integración del driver ULN2003, implementación de alertas sonora y visual, compra de componentes y uso de pines del ESP32.
+### Metodología
+Nuestra metodología a usar es la metodología Scrumban esta metodología permite que se agreguen tareas individuales al plan. Esto permite que los planes de proyectos mantengan una estructura simple y clara, esta observa al proyecto como un rompecabezas el cual requiere de todas las piezas para estar completo, pero no obliga a acomodar las piezas en un orden especifico. 
+Basados en esta metodología decidimos dividirnos tareas como el investigar y probar sensores que íbamos a usar, investigar que librerías y que código tendríamos que incluir para que las pantallas con el adaptador funcionaran, integración del driver ULN2003, implementación de alertas sonora y visual, compra de componentes y uso de pines del ESP32.
 
 
-Primeramente, se buscó que sensores teníamos a la mano y si estos servían para nuestro proyecto, Se determino que teníamos el sensor de temperatura y humedad, pero no el de metano por lo que se tuvo que comprar. Se investigo en cada componente el uso de los pines del ESP32 dado que algunos pines no son usables por cuestiones de que se usan internamente por el ESP32. Después de lo anterior se decidió hacer las pruebas con los sensores de metano, humedad y temperatura, para esto se tuvo que investigar librerías junto con su funcionamiento en código. Una vez realizadas las pruebas se implementaron las alertas sonoras, al ver que no alertaban del todo se decidió implementar el driver ULN2003 para poder usar alarmas sonoras y visuales mas potentes.
+Primeramente, se buscó que sensores teníamos a la mano y si estos servían para nuestro proyecto, Se determino que teníamos el sensor de temperatura y humedad, pero no el de metano por lo que se tuvo que comprar. Se investigo en cada componente el uso de los pines del ESP32 dado que algunos pines no son usables por cuestiones de que se usan internamente por el ESP32. Después de lo anterior se decidió hacer las pruebas con los sensores de metano, humedad y temperatura, para esto se tuvo que investigar librerías junto con su funcionamiento en código. Una vez realizadas las pruebas se implementaron las alertas sonoras, al ver que no alertaban del todo se decidió implementar el driver ULN2003 para poder usar alarmas sonoras y visuales más potentes.
 
 ### Descripción de materiales
 
@@ -60,7 +60,7 @@ Sensor MQ-4
 
 ![image](https://user-images.githubusercontent.com/98352322/168677600-109af7c4-6af9-460b-9138-655a5d1ef029.png)
 
-Este sensor está encargado de detectar el gas metano en el ambiente, tiene 2 salidas de información (analógica y digital), su instalación es rápida y sencilla dado que cuenta con 4 terminales(Voltaje, Tierra, Salida digital, Salida analógica) esto dándonos la capacidad de con un solo pin enviar salida de datos a él microcontrolador.
+Este sensor está encargado de detectar el gas metano en el ambiente, tiene 2 salidas de información (analógica y digital), su instalación es rápida y sencilla dado que cuenta con 4 terminales (Voltaje, Tierra, Salida digital, Salida analógica) esto dándonos la capacidad de con un solo pin enviar salida de datos a él microcontrolador.
 
 Especificaciones técnicas detalladas:
 
@@ -80,11 +80,11 @@ Este adaptador permite transformar un display (16,2) común y corriente a un pro
 
 Especificaciones técnicas detalladas:
 
-Compatible con tarjetas Arduino  o otros microcontroladores que tengan bus I2C 
+Compatible con tarjetas Arduino u otros microcontroladores que tengan bus I2C 
 
 Tipo de display: Blanco negativo en fondo azul.
 
-Direcciónes I2C:0x38-0x3F (0x3F por default)
+Direcciones I2C:0x38-0x3F (0x3F por default)
 
 Suministro de energía: 5V
 
@@ -129,7 +129,7 @@ Sirena automotriz DC 12V 6 tonos
 
 Sirena de auto que funciona con 12V y tiene 6 tonos, se usará para medio de alerta sonoro frente a la presencia de metano.
 
-Cables dupont
+Cables Dupont
 
 ![image](https://user-images.githubusercontent.com/98352322/168678209-c0b827cc-4ecf-4919-b291-15c7eb475aa1.png)
 
@@ -151,7 +151,7 @@ Frecuencia de Reloj: hasta 240Mhz
 
 Desempeñó: Hasta 600 DMIPS
 
-Procesador secundario: Permite hacer operaciones básica en modo de ultra bajo consumo
+Procesador secundario: Permite hacer operaciones básicas en modo de ultra bajo consumo
 
 Wifi: 802.11 b/g/n/e/i (802.11n @ 2.4 GHz hasta 150 Mbit/s)
 
@@ -169,7 +169,7 @@ QSPI Flash/SRAM, 4 MBytes
 
 Pines Digitales GPIO: 24 (Algunos pines solo como entrada)
 
-Conversor Analogico Digital: Dos ADC de 12bits tipo SAR, soporta mediciones en hasta 18 canales, algunos pines soporta un amplificador con ganancia programable
+Conversor Analógico Digital: Dos ADC de 12bits tipo SAR, soporta mediciones en hasta 18 canales, algunos pines soportan un amplificador con ganancia programable
 
 UART: 2
 
@@ -177,7 +177,7 @@ Chip USB-Serial: CP2102
 
 Antena en PCB
 
-Seguridad: Estandares IEEE 802.11 incluyendo WFA, WPA/WPA2 and WAPI
+Seguridad: Estándares IEEE 802.11 incluyendo WFA, WPA/WPA2 and WAPI
 
 1024-bit OTP, up to 768-bit for customers
 
@@ -185,7 +185,7 @@ Aceleración criptográfica por hardware: AES, HASH (SHA-2), RSA, ECC, RNG
 
 ### Descripción del diseño
 
-Primeramente, se implementó paso a paso todas las conexiones en fritzing, si bien algunas conexiones pueden llegar a confundir es lo mas acomodado que puede estar el diagrama, explicaremos parte por parte el diseño
+Primeramente, se implementó paso a paso todas las conexiones en fritzing, si bien algunas conexiones pueden llegar a confundir es lo más acomodado que puede estar el diagrama, explicaremos parte por parte el diseño
 
 ![image](https://user-images.githubusercontent.com/98352322/168678467-5acfd584-5fa2-4482-ac20-6b6f258b7ba4.png)
 
@@ -193,19 +193,19 @@ Pantallas LCD:
 
 ![image](https://user-images.githubusercontent.com/98352322/168678490-ffbd4405-25aa-44aa-aa27-64a100030c40.png)
 
-En esta parte podemos ver que todas las pantallas cuentan con el protocolo i1c dado que son de 4 pines y en la descripción nos aclara, por lo que conectaremos voltaje y tierra a todas, además conectaremos a los pines del ESP32 i2c SCL y i2c SDA a las terminales positiva y negativa de la parte superior, por estas lineas se enviara la información a las pantallas por ende tenemos que conectar sus pines SCL y SDA en donde corresponden en la linea.
+En esta parte podemos ver que todas las pantallas cuentan con el protocolo i1c dado que son de 4 pines y en la descripción nos aclara, por lo que conectaremos voltaje y tierra a todas, además conectaremos a los pines del ESP32 i2c SCL y i2c SDA a las terminales positiva y negativa de la parte superior, por estas líneas se enviara la información a las pantallas por ende tenemos que conectar sus pines SCL y SDA en donde corresponden en la línea.
 
 Sensores:
 
 ![image](https://user-images.githubusercontent.com/98352322/168678533-7d5db326-c34a-4715-a81a-7a1933229395.png)
 
-Los sensores estarán conectados a voltaje y tierra, sumados a estos el pin de datos del sensor DHT11 se conectará a el pin 14 del ESP32, el sensor MQ-4 conectara su terminal del sensor analógico a el pin 4.
+Los sensores estarán conectados a voltaje y tierra, sumados a estos el pin de datos del sensor DHT11 se conectará a el pin 14 del ESP32, el sensor MQ-4 conectará su terminal del sensor analógico a el pin 4.
 
 ULN2003:
 
 ![image](https://user-images.githubusercontent.com/98352322/168678576-3dfd83c7-268c-4189-a74a-1e1b817eca7e.png)
 
-El ULN2003 va a recibir tres entradas de los pines 25,33 y 32, estas entradas pasaran por el driver y conectaran a la tierra del led verde(el primero), la tierra del led rojo(el segundo) y de nuestra alarma, esto completando el circuito dado que una fuente de poder de 12 volts esta enviando tierra al ULN2003 y positivo a los componentes si el ULN2003 envía tierra a cualquiera de los componentes el circuito se cerrara y el componente funcionara.
+El ULN2003 va a recibir tres entradas de los pines 25,33 y 32, estas entradas pasaran por el driver y conectaran a la tierra del led verde (el primero), la tierra del led rojo(el segundo) y de nuestra alarma, esto completando el circuito dado que una fuente de poder de 12 volts está enviando tierra al ULN2003 y positivo a los componentes si el ULN2003 envía tierra a cualquiera de los componentes el circuito se cerrara y el componente funcionara.
 
 
 Pd: se puso la interpretación de la tira led de 12v solo con un led y la interpretación de la sirena de 12v con un buzzer, se puso una batería de 12v en sustituto a nuestra fuente de poder de computadora modificada.
@@ -271,7 +271,7 @@ void loop() {
 }
 ```
 
-Al saber que funcionaba correctamente decidimos ver si el sensor mq4 funcionaba con el siguiente codigo:
+Al saber que funcionaba correctamente decidimos ver si el sensor mq4 funcionaba con el siguiente código:
 ```
 const int MQ_PIN = A0;
 
@@ -457,7 +457,7 @@ void loop() {
 ```
 Se contaba con un buzzer pero este no se percibía bien, por lo que optamos por sustituirlo por una alarma.
 
-Logramos conseguir una alarma de carro a muy buen precio y se conecto a la alimentación de 12 Volts. Gracias al sonido de la alarma pudimos obtener el resultado deseado ya que ahora podíamos escuchar de manera clara cuando el sistema detectaba una anomalía, esto para poder alertar a las personas de este problema.
+Logramos conseguir una alarma de carro a muy buen precio y se conectó a la alimentación de 12 Volts. Gracias al sonido de la alarma pudimos obtener el resultado deseado ya que ahora podíamos escuchar de manera clara cuando el sistema detectaba una anomalía, esto para poder alertar a las personas de este problema.
 
 ![image](https://user-images.githubusercontent.com/98352322/168680242-7047baeb-7ac3-4e16-a648-c812f78a9151.png)
 
@@ -466,29 +466,29 @@ Se puede observar en la imagen como se aplicaron las tiras led de 12 Volts, ya q
 ![image](https://user-images.githubusercontent.com/98352322/168680291-85059865-9a12-4684-9c54-341e1bd67d1e.png)
 
 ### Planeación
-Gracias a que el proyecto fue desarrollado en tiempo y forma nos gustaría implementar una caja donde esté esté guardado, ya que mejora la estética, facilidad de transportar, y sobre todo se vuelve más amigable su uso.
+Gracias a que el proyecto fue desarrollado en tiempo y forma nos gustaría implementar una caja donde esté guardado, ya que mejora la estética, facilidad de transportar, y sobre todo se vuelve más amigable su uso.
 
 También una posible mejora seria implementar el empaquetado de nuestro sistema mediante una impresora 3D, ya que de esta manera podemos realizar el diseño, a nuestro gusto, buscando la mejor apariencia y el mejor espacio para el acomodo de nuestro sistema.
 
-Tambien una posible mejora implementar un servidor el cual pueda observar el valor de los sensores o incluso con mayor dedicación y tiempo se podria conectar por medio de wifi y codigo a el asistente virtual Alexa, dado que Alexa te permite programar para el sin ninguna restricción 
+También una posible mejora implementar un servidor el cual pueda observar el valor de los sensores o incluso con mayor dedicación y tiempo se podría conectar por medio de wifi y código a el asistente virtual Alexa, dado que Alexa te permite programar para el sin ninguna restricción 
 
 ### Problemas / Obstáculos. 
 
 Existieron varios problemas que se presentaron en la realización del proyecto. Por ejemplo:
 
-●	Cuando soldamos uno de los componentes este no funcionaba pero, se pudo rectificar y arreglar este fallo soldando de nuevo la placa.
+●	Cuando soldamos uno de los componentes este no funcionaba, pero, se pudo rectificar y arreglar este fallo soldando de nuevo la placa.
 
 ●	El sensor de gas detectaba gas cuando no existían partículas, se pudo resolver calibrando manualmente el sensor a 1500 partículas por metro para su detección.
 
 ●	Cuando el sistema mandaba una señal de detección se apagaba nuestra tira led verde pero no encendía la bocina ni la tira led roja. Para corregir este error se cambió la polaridad del ULN ya que se pensaba que este se conectaba de cierta manera y resultó que era inverso.
 
-●	Contábamos con un buzzer para la detección de algún sensor pero la frecuencia de este
+●	Contábamos con un buzzer para la detección de algún sensor, pero la frecuencia de este
 
-●	Sensibilidad al ruido, el proyecto en veces cuando se movia el esp32 empezaba a enviar ruido a las pantallas o el sensor se hacia mas o menos sensible.
+●	Sensibilidad al ruido, el proyecto en veces cuando se movía el esp32 empezaba a enviar ruido a las pantallas o el sensor se hacía más o menos sensible.
 
 ### Resultados y Conclusiones
 
-El resultado fue muy gratificante dado que el proyecto satisface el problema planteado, si bien en este problema se partió de una solución que podría parecer simple se termino haciendo un sistema digno de competir en el mercado en cuanto a funcionalidad, si bien se esperaba un resultado en el proyecto el cual estuviera mas limpio las continuas mejoras complicaban cada vez mas el circuito, sin mencionar que se tuvo que implementar una fuente de computadora a falta de una batería de 12v.
+El resultado fue muy gratificante dado que el proyecto satisface el problema planteado, si bien en este problema se partió de una solución que podría parecer simple se terminó haciendo un sistema digno de competir en el mercado en cuanto a funcionalidad, si bien se esperaba un resultado en el proyecto el cual estuviera mas limpio las continuas mejoras complicaban cada vez mas el circuito, sin mencionar que se tuvo que implementar una fuente de computadora a falta de una batería de 12v.
 
 Mostrando su funcionamiento podemos ver que cuando no hay presencia de gas se despliega la luz verde y en la pantalla LCD despliega el mensaje “No hay gas”.
 
@@ -516,6 +516,7 @@ https://arduinoque.com/arduino/display-lcd-16x2-datasheet/
 https://pdf1.alldatasheet.es/datasheet-pdf/view/25575/STMICROELECTRONICS/ULN2003.html
 
 https://www.inventable.eu/2018/02/09/uln2003-driver-salida-microcontroladores/
+
 
 
 
