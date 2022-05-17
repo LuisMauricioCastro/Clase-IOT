@@ -740,33 +740,33 @@ Initially, only the DHT sensor was implemented and the following code was tested
 // We initialize the DHT11 sensor
 DHT dht(DHTPIN, DHTTYPE);
 void setup() {
-  // Inicializamos comunicación serie
+  // We initialize serial communication
   Serial.begin(9600);
-  // Comenzamos el sensor DHT
+  // We start the DHT sensor
   dht.begin();
 }
 void loop() {
-    // Esperamos 5 segundos entre medidas
+    // We waited 5 seconds between measurements
   delay(5000);
   // Leemos la humedad relativa
   float h = dht.readHumidity();
-  // Leemos la temperatura en grados centígrados (por defecto)
+  // We read the temperature in Celsius (default)
   float t = dht.readTemperature();
-  // Leemos la temperatura en grados Fahreheit
+  // We read the temperature in Fahreheit degrees
   float f = dht.readTemperature(true);
-  // Comprobamos si ha habido algún error en la lectura
+  // We check if there has been any error in reading
   if (isnan(h) || isnan(t) || isnan(f)) {
-    Serial.println("Error obteniendo los datos del sensor DHT11");
+    Serial.println("Error getting data from DHT11 sensor");
     return;
   }
-  // Calcular el índice de calor en Fahreheit
+  // Calculate the heat in Fahreheit
   float hif = dht.computeHeatIndex(f, h);
-  // Calcular el índice de calor en grados centígrados
+  // Calculate the heat in degrees centigrade
   float hic = dht.computeHeatIndex(t, h, false);
   Serial.print("Humedad: ");
   Serial.print(h);
   Serial.print(" %\t");
-  Serial.print("Temperatura: ");
+  Serial.print("Temperature: ");
   Serial.print(t);
   Serial.print(" *C ");
   Serial.print(f);
