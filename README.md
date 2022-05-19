@@ -1,6 +1,8 @@
-# Clase-IOT
+# Prototipo para Monitoreo de Calidad del Aire
 Programas realizados en la clase de Internet of things 
-
+Universidad Autonoma de Chihuahua
+Carrera: Ingeniería EN Sistemas Computacionales en Hardware
+Materia: Internet de las cosas
 Grupo 8HW1
 
 Alumno: 
@@ -11,20 +13,22 @@ Profesor:  Pacheco González Alberto
 
 Placa de desarrollo: ESP32 DEVKIT V1
 
-### Planteamiento del problema
+---
+
+### Planteamiento del Problema
 El proyecto busca lograr determinar si la ubicación en donde está el sistema tiene niveles de metano no peligrosos, también el sensado de la temperatura y humedad relativa del ambiente, esto por la gran cantidad de fugas de gas que existen cotidianamente.
 ### Objetivos
 Se busca hacer con un microcontrolador ESP32 el cual por medio de componentes mostrará los datos de los sensores y alertará si el nivel de metano es suficiente como para lograr ser peligroso, en caso de detectarlo activara una alarma visual y sonora para que el usuario sepa que existe una fuga de gas.
 ### Metodología
-Nuestra metodología a usar es la metodología Scrumban esta metodología permite que se agreguen tareas individuales al plan. Esto permite que los planes de proyectos mantengan una estructura simple y clara, esta observa al proyecto como un rompecabezas el cual requiere de todas las piezas para estar completo, pero no obliga a acomodar las piezas en un orden especifico. 
-Basados en esta metodología decidimos dividirnos tareas como el investigar y probar sensores que íbamos a usar, investigar que librerías y que código tendríamos que incluir para que las pantallas con el adaptador funcionaran, integración del driver ULN2003, implementación de alertas sonora y visual, compra de componentes y uso de pines del ESP32.
-
+Nuestra metodología a usar es la [metodología Scrumban](https://asana.com/es/resources/scrumban)  esta metodología permite que se agreguen tareas individuales al plan. Esto permite que los planes de proyectos mantengan una estructura simple y clara, esta observa al proyecto como un rompecabezas el cual requiere de todas las piezas para estar completo, pero no obliga a acomodar las piezas en un orden especifico. 
+Basados en esta metodología decidimos dividirnos tareas como el investigar y probar sensores que íbamos a usar, investigar que librerías y que código tendríamos que incluir para que las pantallas con el adaptador funcionaran, integración del driver [ULN2003](https://pdf1.alldatasheet.es/datasheet-pdf/view/25575/STMICROELECTRONICS/ULN2003.html) , implementación de alertas sonora y visual, compra de componentes y uso de pines del ESP32.
 
 Primeramente, se buscó que sensores teníamos a la mano y si estos servían para nuestro proyecto, Se determino que teníamos el sensor de temperatura y humedad, pero no el de metano por lo que se tuvo que comprar. Se investigo en cada componente el uso de los pines del ESP32 dado que algunos pines no son usables por cuestiones de que se usan internamente por el ESP32. Después de lo anterior se decidió hacer las pruebas con los sensores de metano, humedad y temperatura, para esto se tuvo que investigar librerías junto con su funcionamiento en código. Una vez realizadas las pruebas se implementaron las alertas sonoras, al ver que no alertaban del todo se decidió implementar el driver ULN2003 para poder usar alarmas sonoras y visuales más potentes.
 
-### Descripción de materiales
 
-●	ESP-32.
+### Descripción de Materiales
+
+●	Microcontrolador ESP-32.
 
 ●	Driver ULN2003.
 
@@ -38,15 +42,15 @@ Primeramente, se buscó que sensores teníamos a la mano y si estos servían par
 
 ●	2 Protoboards.
 
-●	DHT11.
+●	Sensor de humedad y temperatura DHT11.
 
 ● 3 Pantallas LCD.
 
 ●	3 adaptadores de conexiones LCD a i2c.
 
-●	1 Sensor MQ4.
+●	1 Sensor de metano MQ4
 
-Sensor DHT11
+[Sensor de Temperatura y Humedad DHT11](https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf)
 
 ![image](https://user-images.githubusercontent.com/98352322/168677494-364a8489-9f6b-4ccb-8c94-5bb5f46216d6.png)
 
@@ -56,7 +60,7 @@ Especificaciones técnicas detalladas:
 
 ![image](https://user-images.githubusercontent.com/98352322/168677568-e3c6d7de-57b7-46b3-95b8-5b47476271c4.png)
 
-Sensor MQ-4
+[Sensor de Metano MQ-4](https://uelectronics.com/wp-content/uploads/2018/01/MQ-4.pdf)
 
 ![image](https://user-images.githubusercontent.com/98352322/168677600-109af7c4-6af9-460b-9138-655a5d1ef029.png)
 
@@ -66,13 +70,13 @@ Especificaciones técnicas detalladas:
 
 ![image](https://user-images.githubusercontent.com/98352322/168677680-3c62b662-23eb-4fa2-b8e4-3ce35534b8bb.png)
 
-Pantalla LCD (16,2) 
+[Pantalla LCD (16,2)](http://www.handsontec.com/dataspecs/module/I2C_1602_LCD.pdf) 
 
 ![image](https://user-images.githubusercontent.com/98352322/168677708-3735367c-ec8e-4111-bbf1-b8eac7ed399c.png)
 
 Pantalla de 16 caracteres y 2 renglones, serán las encargadas de mostrar los datos de los sensores al usuario.
 
-Adaptador display LCD (16,2) a i2c
+[Adaptador Display LCD (16,2) a i2c](http://www.handsontec.com/dataspecs/module/I2C_1602_LCD.pdf)
 
 ![image](https://user-images.githubusercontent.com/98352322/168677760-9f0e7db9-858b-48b8-8502-41907d072e0b.png)
 
@@ -115,7 +119,7 @@ Fuente de poder 12V/Fuente de computadora modificada para entregar 12V
 
 Sera la encargada de suministrar energía a los componentes que funcionan con 12V, se pueden usar baterías o soluciones más compactas, en nuestro caso usaremos una fuente de poder modificada para tener a disposición una terminal de 12 voltios y de tierra.
 
-Driver ULN2003
+[Driver ULN2003](https://pdf1.alldatasheet.es/datasheet-pdf/view/25575/STMICROELECTRONICS/ULN2003.html)
 
 ![image](https://user-images.githubusercontent.com/98352322/168678099-ccb93bf9-6482-458d-89f9-aa3952301fc2.png)
 
@@ -135,7 +139,7 @@ Cables Dupont
 
 Se realizará la conexión entre los componentes del sistema para mandar los datos, voltajes y tierras.
 
-ESP32
+Microcontrolador ESP32
 
 ![image](https://user-images.githubusercontent.com/98352322/168678326-e811f4b5-57cb-46a1-b65d-9c252c50151f.png)
 
@@ -183,29 +187,32 @@ Seguridad: Estándares IEEE 802.11 incluyendo WFA, WPA/WPA2 and WAPI
 
 Aceleración criptográfica por hardware: AES, HASH (SHA-2), RSA, ECC, RNG
 
-### Descripción del diseño
+### Descripción del Diseño
 
 Primeramente, se implementó paso a paso todas las conexiones en fritzing, si bien algunas conexiones pueden llegar a confundir es lo más acomodado que puede estar el diagrama, explicaremos parte por parte el diseño
 
 ![image](https://user-images.githubusercontent.com/98352322/168678467-5acfd584-5fa2-4482-ac20-6b6f258b7ba4.png)
 
-Pantallas LCD:
-
-![image](https://user-images.githubusercontent.com/98352322/168678490-ffbd4405-25aa-44aa-aa27-64a100030c40.png)
 
 En esta parte podemos ver que todas las pantallas cuentan con el protocolo i1c dado que son de 4 pines y en la descripción nos aclara, por lo que conectaremos voltaje y tierra a todas, además conectaremos a los pines del ESP32 i2c SCL y i2c SDA a las terminales positiva y negativa de la parte superior, por estas líneas se enviara la información a las pantallas por ende tenemos que conectar sus pines SCL y SDA en donde corresponden en la línea.
 
-Sensores:
+Diagrama de Conexiones Pantallas LCD:
 
-![image](https://user-images.githubusercontent.com/98352322/168678533-7d5db326-c34a-4715-a81a-7a1933229395.png)
+![image](https://user-images.githubusercontent.com/98352322/168678490-ffbd4405-25aa-44aa-aa27-64a100030c40.png)
 
 Los sensores estarán conectados a voltaje y tierra, sumados a estos el pin de datos del sensor DHT11 se conectará a el pin 14 del ESP32, el sensor MQ-4 conectará su terminal del sensor analógico a el pin 4.
 
-ULN2003:
+Diagrama de Conexiones Sensores:
+
+![image](https://user-images.githubusercontent.com/98352322/168678533-7d5db326-c34a-4715-a81a-7a1933229395.png)
+
+El ULN2003 va a recibir tres entradas de los pines 25,33 y 32, estas entradas pasaran por el driver y conectaran a la tierra del led verde (el primero), la tierra del led rojo(el segundo) y de nuestra alarma, esto completando el circuito dado que una fuente de poder de 12 volts está enviando tierra al ULN2003 y positivo a los componentes si el ULN2003 envía tierra a cualquiera de los componentes el circuito se cerrara y el componente funcionara.
+
+Diagrama de Conexiones ULN2003:
 
 ![image](https://user-images.githubusercontent.com/98352322/168678576-3dfd83c7-268c-4189-a74a-1e1b817eca7e.png)
 
-El ULN2003 va a recibir tres entradas de los pines 25,33 y 32, estas entradas pasaran por el driver y conectaran a la tierra del led verde (el primero), la tierra del led rojo(el segundo) y de nuestra alarma, esto completando el circuito dado que una fuente de poder de 12 volts está enviando tierra al ULN2003 y positivo a los componentes si el ULN2003 envía tierra a cualquiera de los componentes el circuito se cerrara y el componente funcionara.
+
 
 
 Pd: se puso la interpretación de la tira led de 12v solo con un led y la interpretación de la sirena de 12v con un buzzer, se puso una batería de 12v en sustituto a nuestra fuente de poder de computadora modificada.
@@ -215,14 +222,14 @@ Importante tener en cuenta el diagrama de conexiones del ESP32 todo el tiempo pu
 ![image](https://user-images.githubusercontent.com/98352322/168682044-42c1322e-dffe-4696-b292-dbe848dfb4b6.png)
 
 
-### Desarrollo del proyecto
+### Desarrollo del Proyecto
 
 Primeramente, escogimos el tema dado a que por situaciones personales se podría llegar a implementar fuera de la clase.
 Una vez decidido el proyecto se empezó a conseguir los materiales, inicialmente se estuvo probando cada sensor por separado para entender su funcionamiento.
 
 
 Al inicio se implementó únicamente el sensor DHT y se hizo pruebas con el siguiente código:		
-```
+```C++
 // Incluimos librería
 #include <DHT.h>
 // Definimos el pin digital donde se conecta el sensor
@@ -272,7 +279,7 @@ void loop() {
 ```
 
 Al saber que funcionaba correctamente decidimos ver si el sensor mq4 funcionaba con el siguiente código:
-```
+```C++
 const int MQ_PIN = A0;
 
 const int MQ_DELAY = 2000;
@@ -319,7 +326,7 @@ En la anterior imagen podemos ver en donde se cambia lña dirección de cada ada
 
 
 El código para buscar las direcciones es el siguiente:
-```
+```C++
 
 #include <Wire.h> //include Wire.h library
 
@@ -379,7 +386,7 @@ Al descifrar las direcciones integraremos las pantallas y sensores, una vez inte
 
 Por lo que todo implementado en código se ve de la siguiente manera:
 
-```
+```C++
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
 #include <DHT.h>
@@ -494,28 +501,19 @@ Mostrando su funcionamiento podemos ver que cuando no hay presencia de gas se de
 
 ![image](https://user-images.githubusercontent.com/98352322/168680779-82110b03-7fb4-46b1-888f-b31b33c4c956.png)
 
+Proyecta detectando que no detecta gas
+
 En caso de que el sensor detecte gas como vemos en la siguiente imagen, mostrara una alerta visual (led en rojo) y una alerta sonora que es una alarma automotriz de 12v con 6 tonos.
 
 ![image](https://user-images.githubusercontent.com/98352322/168680828-6744dce0-e4c3-4c58-9909-acab6c61604d.png)
+
+Proyecto detectando gas
 
 Video del proyecto funcionando:
 
 https://drive.google.com/file/d/1DOTJb55SXMTuTHYOrzcRV_U-Resku4TW/view?usp=sharing
 
 
-### Referencias
-
-https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf
-
-http://www.handsontec.com/dataspecs/module/I2C_1602_LCD.pdf
-
-https://uelectronics.com/wp-content/uploads/2018/01/MQ-4.pdf
-
-https://arduinoque.com/arduino/display-lcd-16x2-datasheet/
-
-https://pdf1.alldatasheet.es/datasheet-pdf/view/25575/STMICROELECTRONICS/ULN2003.html
-
-https://www.inventable.eu/2018/02/09/uln2003-driver-salida-microcontroladores/
 
 
 
@@ -523,10 +521,11 @@ https://www.inventable.eu/2018/02/09/uln2003-driver-salida-microcontroladores/
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
-# Clase-IOT
-Programs made in the Internet of Things class
-Grupo 8HW1
+# Prototype for Air Quality Monitoring
+Program made in the Internet of things class 
+Universidad Autonoma de Chihuahua
+Career: Computer Systems Engineering in Hardware
+Subject: Internet of Things
 
 Students: 
 
@@ -547,29 +546,29 @@ Our methodology to use is the Scrumban methodology this methodology allows indiv
 Based on this methodology we decided to divide tasks such as researching and testing sensors that we were going to use, investigating which libraries and code we would have to include for the screens with the adapter to work, integration of the ULN2003 driver, implementation of audible and visual alerts, purchase of components and use of ESP32 pins.
 First, we looked for sensors we had at hand and if these were useful for our project, it was determined that we had the temperature and humidity sensor, but not the methane sensor so it had to be purchased. The use of ESP32 pins was investigated in each component since some pins are not usable due to issues that are used internally by the ESP32. After the above it was decided to do the tests with the sensors of methane, humidity and temperature, for this it had to investigate libraries along with their operation in code. Once the tests were carried out, the sound alerts were implemented, seeing that they did not alert at all, it was decided to implement the ULN2003 driver in order to use more powerful sound and visual alarms.
 ### Material Description
-●	ESP-32.
+●	Microcontroller ESP-32.
 
 ●	Driver ULN2003.
 
-●	 Dupont Wires.
+●	Dupont Wires.
 
-●	Bocina automotriz DC 12V.
+●	Car Horn DC 12V.
 
-●	Fuente de poder 12V.
+●	PSU 12V.
 
 ●	Led strips 12 volts.
 
 ●	2 Protoboards.
 
-●	DHT11.
+●	DHT11 Humidity and Temperature sensor.
 
-●        3 LCD Screens.
+● 3 LCD Screens.
 
 ●	3 adapters for LCD to i2c connections
 
-●	1 Sensor MQ4.
+●	1 Methane Sensor MQ4.
 
-Sensor DHT11
+[Humidity and Temperature sensor DHT11](https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf)
 
 ![image](https://user-images.githubusercontent.com/98352322/168677494-364a8489-9f6b-4ccb-8c94-5bb5f46216d6.png)
 
@@ -579,7 +578,7 @@ Detailed technical specifications:
 
 ![image](https://user-images.githubusercontent.com/98352322/168677568-e3c6d7de-57b7-46b3-95b8-5b47476271c4.png)
 
-Sensor MQ-4
+[Methane Sensor MQ-4](https://uelectronics.com/wp-content/uploads/2018/01/MQ-4.pdf)
 
 ![image](https://user-images.githubusercontent.com/98352322/168677600-109af7c4-6af9-460b-9138-655a5d1ef029.png)
 
@@ -701,17 +700,17 @@ First, all connections were implemented step by step in fritzing, although some 
 
 ![image](https://user-images.githubusercontent.com/98352322/168678467-5acfd584-5fa2-4482-ac20-6b6f258b7ba4.png)
 
-LCD Screen:
+Connection Diagram LCD Screen:
 
 ![image](https://user-images.githubusercontent.com/98352322/168678490-ffbd4405-25aa-44aa-aa27-64a100030c40.png)
 
 In this part we can see that all screens have the i1c protocol since they are 4 pins and, in the description, clarifies us, so we will connect voltage and earth to all, we will also connect to the pins of the ESP32 i2c SCL and i2c SDA to the positive and negative terminals of the top, for these lines the information will be sent to the screens therefore we have to connect their pins SCL and SDA where they correspond in the line.
-Sensors:
+Connection Diagram Sensors:
 
 ![image](https://user-images.githubusercontent.com/98352322/168678533-7d5db326-c34a-4715-a81a-7a1933229395.png)
 
 The sensors will be connected to voltage and ground, added to these the data pin of the DHT11 sensor will be connected to pin 14 of the ESP32, the MQ-4 sensor will connect its analog sensor terminal to pin 4.
-ULN2003:
+Connection Diagram ULN2003:
 
 ![image](https://user-images.githubusercontent.com/98352322/168678576-3dfd83c7-268c-4189-a74a-1e1b817eca7e.png)
 
@@ -730,7 +729,7 @@ First, we chose the subject given that personal situations could be implemented 
 Once the project was decided, materials began to be obtained, initially each sensor was tested separately to understand its operation.
 
 Initially, only the DHT sensor was implemented and the following code was tested:	
-```
+```C++
 // Include library
 #include <DHT.h>
 // We define the digital pin where the sensor is connected
@@ -780,7 +779,7 @@ void loop() {
 ```
 
 Knowing that it worked correctly we decided to see if the mq4 sensor worked with the following code:
-```
+```C++
 const int MQ_PIN = A0;
 
 const int MQ_DELAY = 2000;
@@ -826,7 +825,7 @@ For this we require to weld the screens with the adapter, in turn we will have t
 In the above image we can see where the direction of each adapter is changed.
 
 The code to search for the addresses is as follows:
-```
+```C++
 
 #include <Wire.h> //include Wire.h library
 
@@ -886,7 +885,7 @@ When deciphering the directions we will integrate the screens and sensors, once 
 
 So everything implemented in code looks like this:
 
-```
+```C++
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
 #include <DHT.h>
@@ -993,29 +992,20 @@ Noise sensitivity, the project sometimes when moving the ESP32 started to send n
 
 The result was very gratifying given that the project satisfies the problem posed, although in this problem was based on a solution that could seem simple ended up making a system worthy of competing in the market in terms of functionality, Although it was expected a result in the project which was cleaner the continuous improvements complicated the circuit more and more, not to mention that a computer source had to be implemented in the absence of a 12v battery.
 
-Showing its operation we can see that when there is no presence of gas the green light is displayed and the LCD displays the message "No gas".
+
 
 ![image](https://user-images.githubusercontent.com/98352322/168680779-82110b03-7fb4-46b1-888f-b31b33c4c956.png)
 
-In case the sensor detects gas as we see in the following image, it will show a visual alert (LED in red) and a sound alert that is a 12v automotive alarm with 6 tones.
+Showing its operation we can see that when there is no presence of gas the green light is displayed and the LCD displays the message "No gas".
+
+
 
 ![image](https://user-images.githubusercontent.com/98352322/168680828-6744dce0-e4c3-4c58-9909-acab6c61604d.png)
+
+In case the sensor detects gas as we see in the following image, it will show a visual alert (LED in red) and a sound alert that is a 12v automotive alarm with 6 tones.
 
 Video of the project running:
 
 https://drive.google.com/file/d/1DOTJb55SXMTuTHYOrzcRV_U-Resku4TW/view?usp=sharing
 
 
-### References
-
-https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf
-
-http://www.handsontec.com/dataspecs/module/I2C_1602_LCD.pdf
-
-https://uelectronics.com/wp-content/uploads/2018/01/MQ-4.pdf
-
-https://arduinoque.com/arduino/display-lcd-16x2-datasheet/
-
-https://pdf1.alldatasheet.es/datasheet-pdf/view/25575/STMICROELECTRONICS/ULN2003.html
-
-https://www.inventable.eu/2018/02/09/uln2003-driver-salida-microcontroladores/
