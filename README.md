@@ -515,7 +515,7 @@ https://drive.google.com/file/d/1DOTJb55SXMTuTHYOrzcRV_U-Resku4TW/view?usp=shari
 
 https://photos.app.goo.gl/XyjaC3mmCq5swmvw7
 
-Videos y fotografias de todo el proyecto:
+Videos y fotografias del desarrollo del proyecto:
 
 https://photos.app.goo.gl/fx3UbA5Nq7n7yaQz7
 
@@ -1011,6 +1011,6 @@ https://drive.google.com/file/d/1DOTJb55SXMTuTHYOrzcRV_U-Resku4TW/view?usp=shari
 
 https://photos.app.goo.gl/XyjaC3mmCq5swmvw7
 
-videos and photos of the entire project:
+Videos and photographs of the development of the project:
 
 https://photos.app.goo.gl/fx3UbA5Nq7n7yaQz7
