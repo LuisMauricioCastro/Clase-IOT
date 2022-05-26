@@ -513,8 +513,7 @@ Video del proyecto funcionando:
 
 https://drive.google.com/file/d/1DOTJb55SXMTuTHYOrzcRV_U-Resku4TW/view?usp=sharing
 
-
-
+https://photos.app.goo.gl/XyjaC3mmCq5swmvw7
 
 
 
@@ -1008,4 +1007,4 @@ Video of the project running:
 
 https://drive.google.com/file/d/1DOTJb55SXMTuTHYOrzcRV_U-Resku4TW/view?usp=sharing
 
-
+https://photos.app.goo.gl/XyjaC3mmCq5swmvw7
