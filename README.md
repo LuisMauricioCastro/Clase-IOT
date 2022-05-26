@@ -515,7 +515,9 @@ https://drive.google.com/file/d/1DOTJb55SXMTuTHYOrzcRV_U-Resku4TW/view?usp=shari
 
 https://photos.app.goo.gl/XyjaC3mmCq5swmvw7
 
+Videos y fotografias de todo el proyecto:
 
+https://photos.app.goo.gl/fx3UbA5Nq7n7yaQz7
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1008,3 +1010,7 @@ Video of the project running:
 https://drive.google.com/file/d/1DOTJb55SXMTuTHYOrzcRV_U-Resku4TW/view?usp=sharing
 
 https://photos.app.goo.gl/XyjaC3mmCq5swmvw7
+
+videos and photos of the entire project:
+
+https://photos.app.goo.gl/fx3UbA5Nq7n7yaQz7
